@@ -12,6 +12,7 @@ var HTMLView = React.createClass({
   propTypes: {
     value: React.PropTypes.string,
     stylesheet: React.PropTypes.object,
+    pSpacer: React.PropTypes.any,
     onLinkPress: React.PropTypes.func,
     onError: React.PropTypes.func,
     renderNode: React.PropTypes.func,
@@ -52,6 +53,7 @@ var HTMLView = React.createClass({
       linkHandler: this.props.onLinkPress,
       styles: Object.assign({}, baseStyles, this.props.stylesheet),
       customRenderer: this.props.renderNode,
+      pSpacer: this.props.pSpacer
     }
 
     htmlToElement(value, opts, (err, element) => {
@@ -63,7 +65,7 @@ var HTMLView = React.createClass({
 
   render() {
     if (this.state.element) {
-      return <Text children={this.state.element} />
+      return <Text children={this.state.element}/>
     }
     return <Text />
   },
@@ -83,8 +85,6 @@ var baseStyles = StyleSheet.create({
   a: {
     fontWeight: '500',
     color: '#007AFF',
-  },
-  pView: {
   },
 })
 

@@ -4,8 +4,7 @@ var htmlparser = require('./vendor/htmlparser2')
 var entities = require('./vendor/entities')
 
 var {
-  Text,
-  View
+  Text
 } = ReactNative
 
 
@@ -37,14 +36,6 @@ function htmlToElement(rawHtml, opts, done) {
           linkPressHandler = () => opts.linkHandler(entities.decodeHTML(node.attribs.href))
         }
 
-        if (node.name == 'p') {
-          return (
-            <View key={index} style={opts.styles.pView}>
-              {domToElement(node.children, node)}
-            </View>
-          )
-        }
-
         return (
           <Text key={index} onPress={linkPressHandler}>
             {node.name == 'pre' ? LINE_BREAK : null}
@@ -53,6 +44,7 @@ function htmlToElement(rawHtml, opts, done) {
             {node.name == 'br' || node.name == 'li' ? LINE_BREAK : null}
             {node.name == 'p' && index < list.length - 1 ? PARAGRAPH_BREAK : null}
             {node.name == 'h1' || node.name == 'h2' || node.name == 'h3' || node.name == 'h4' || node.name == 'h5' ? PARAGRAPH_BREAK : null}
+            {node.name == 'p' && opts.pSpacer ? opts.pSpacer : null}
           </Text>
         )
       }
