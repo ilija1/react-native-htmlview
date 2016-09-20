@@ -36,6 +36,14 @@ function htmlToElement(rawHtml, opts, done) {
           linkPressHandler = () => opts.linkHandler(entities.decodeHTML(node.attribs.href))
         }
 
+        if (node.name == 'p') {
+          return (
+            <View key={index} style={opts.styles.pView}>
+              {domToElement(node.children, node)}
+            </View>
+          )
+        }
+
         return (
           <Text key={index} onPress={linkPressHandler}>
             {node.name == 'pre' ? LINE_BREAK : null}
@@ -50,7 +58,7 @@ function htmlToElement(rawHtml, opts, done) {
     })
   }
 
-  var handler = new htmlparser.DomHandler(function(err, dom) {
+  var handler = new htmlparser.DomHandler(function (err, dom) {
     if (err) done(err)
     done(null, domToElement(dom))
   })

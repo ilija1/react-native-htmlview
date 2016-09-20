@@ -84,6 +84,8 @@ var baseStyles = StyleSheet.create({
     fontWeight: '500',
     color: '#007AFF',
   },
+  pView: {
+  },
 })
 
 module.exports = HTMLView
