@@ -8,8 +8,8 @@ var {
 } = ReactNative
 
 
-var LINE_BREAK = '\n'
-var PARAGRAPH_BREAK = '\n\n'
+var LINE_BREAK = ''
+var PARAGRAPH_BREAK = ''
 var BULLET = '\u2022 '
 
 function htmlToElement(rawHtml, opts, done) {
